@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using LibraryService.WebAPI.Data;
 using LibraryService.WebAPI.Services;
@@ -19,6 +20,7 @@ namespace LibraryService.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetAll()
         {
             var libraries = await _librariesService.Get(null);
